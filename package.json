@@ -4,7 +4,7 @@
   "type": "module",
   "author": "Alvin Indra Pratama",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3333",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -22,6 +22,7 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
