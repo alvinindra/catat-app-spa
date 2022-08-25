@@ -1,10 +1,12 @@
 import { FiMoreHorizontal } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 function NoteItem () {
   return (
-    <div
+    <Link
       className='px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
     border-2 border-transparent hover:border-blue-500 cursor-pointer transition'
+      to={'/note/' + 4}
     >
       <div className='text-base capitalize font-semibold'>
         <h3 className='mb-2'>Percobaan</h3>
@@ -23,7 +25,7 @@ function NoteItem () {
           <FiMoreHorizontal />
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

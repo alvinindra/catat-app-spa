@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom'
+import NoteAppHeader from '../components/NoteAppHeader'
+import NoteDetail from '../components/NoteDetail'
 
 export default function NotePage () {
   return (
-    <div>
-      <h1>Note Page</h1>
-      <Link to='/'>Home</Link>
-    </div>
+    <section>
+      <NoteAppHeader />
+      <NoteDetail />
+    </section>
   )
 }

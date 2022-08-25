@@ -117,12 +117,23 @@ function editNote ({ id, title, body }) {
   })
 }
 
+function showFormattedDate (date) {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }
+  return new Date(date).toLocaleDateString('id-ID', options)
+}
+
 export {
   getAllNotes,
   getActiveNotes,
   getArchivedNotes,
   deleteNote,
   editNote,
+  showFormattedDate,
   getNote,
   archiveNote,
   unarchiveNote,
