@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiPlus, FiArchive, FiMoon } from 'react-icons/fi'
 import { useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-function NoteAppHeader () {
+function NoteAppHeader ({ totalNote }) {
   const { id } = useParams()
 
   return (
@@ -15,7 +16,7 @@ function NoteAppHeader () {
           </h1>
         </Link>
         <p className='flex flex-row text-sm font-medium text-gray-600'>
-          <span>Total 7 catatan</span>
+          <span>Total {totalNote} catatan</span>
           <span className='hidden md:block'>&nbsp;yang telah dibuat</span>
         </p>
       </div>
@@ -38,6 +39,10 @@ function NoteAppHeader () {
       </div>
     </div>
   )
+}
+
+NoteAppHeader.propTypes = {
+  totalNote: PropTypes.number.isRequired
 }
 
 export default NoteAppHeader

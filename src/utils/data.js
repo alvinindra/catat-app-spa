@@ -117,7 +117,7 @@ function editNote ({ id, title, body }) {
   })
 }
 
-function showFormattedDate (date) {
+function formatDate (date) {
   const options = {
     weekday: 'long',
     year: 'numeric',
@@ -133,7 +133,7 @@ export {
   getArchivedNotes,
   deleteNote,
   editNote,
-  showFormattedDate,
+  formatDate,
   getNote,
   archiveNote,
   unarchiveNote,
