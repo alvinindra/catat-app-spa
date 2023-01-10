@@ -1,6 +1,6 @@
-import NoteAppHeader from '../components/NoteAppHeader'
-import NoteList from '../components/NoteList'
-import { getAllNotes } from '../utils/data'
+import NoteAppHeader from '@/components/NoteAppHeader'
+import NoteList from '@/components/NoteList'
+import { getAllNotes } from '@/utils/data'
 
 export default function HomePage () {
   const listNote = getAllNotes()

@@ -1,6 +1,6 @@
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { formatDate } from '../utils/data'
+import { formatDate } from '@/utils/data'
 import PropTypes from 'prop-types'
 
 function NoteItem ({ title, body, date }) {

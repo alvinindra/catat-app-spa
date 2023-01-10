@@ -42,7 +42,7 @@ function NoteAppHeader ({ totalNote }) {
 }
 
 NoteAppHeader.propTypes = {
-  totalNote: PropTypes.number.isRequired
+  totalNote: PropTypes.number
 }
 
 export default NoteAppHeader
