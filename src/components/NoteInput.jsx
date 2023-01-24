@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 class NoteInput extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       name: '',
-      tag: ''
+      tag: '',
     }
 
     this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this)
@@ -15,50 +15,50 @@ class NoteInput extends React.Component {
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this)
   }
 
-  onNameChangeEventHandler (event) {
+  onNameChangeEventHandler(event) {
     this.setState(() => {
       return {
-        name: event.target.value
+        name: event.target.value,
       }
     })
   }
 
-  onTagChangeEventHandler (event) {
+  onTagChangeEventHandler(event) {
     this.setState(() => {
       return {
-        tag: event.target.value
+        tag: event.target.value,
       }
     })
   }
 
-  onSubmitEventHandler (event) {
+  onSubmitEventHandler(event) {
     event.preventDefault()
     this.props.addNote(this.state)
   }
 
-  render () {
+  render() {
     return (
-      <form className='note-input' onSubmit={this.onSubmitEventHandler}>
+      <form className="note-input" onSubmit={this.onSubmitEventHandler}>
         <input
-          type='text'
-          placeholder='Nama'
+          type="text"
+          placeholder="Nama"
           value={this.state.name}
           onChange={this.onNameChangeEventHandler}
         />
         <input
-          type='text'
-          placeholder='Tag'
+          type="text"
+          placeholder="Tag"
           value={this.state.tag}
           onChange={this.onTagChangeEventHandler}
         />
-        <button type='submit'>Tambah</button>
+        <button type="submit">Tambah</button>
       </form>
     )
   }
 }
 
 NoteInput.propTypes = {
-  addNote: PropTypes.func.isRequired
+  addNote: PropTypes.func.isRequired,
 }
 
 export default NoteInput

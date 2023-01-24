@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import NoteInput from '@/components/NoteInput'
 import NoteAppHeader from '@/components/NoteAppHeader'
 
-function AddPage () {
+function AddPage() {
   const navigate = useNavigate()
 
-  function onAddNoteHandler (note) {
+  function onAddNoteHandler(note) {
     addNote(note)
     navigate('/')
   }
