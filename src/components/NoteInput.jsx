@@ -6,27 +6,27 @@ class NoteInput extends React.Component {
     super(props)
 
     this.state = {
-      name: '',
-      tag: '',
+      title: '',
+      body: '',
     }
 
-    this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this)
-    this.onTagChangeEventHandler = this.onTagChangeEventHandler.bind(this)
+    this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this)
+    this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this)
     this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this)
   }
 
-  onNameChangeEventHandler(event) {
+  onTitleChangeEventHandler(event) {
     this.setState(() => {
       return {
-        name: event.target.value,
+        title: event.target.value,
       }
     })
   }
 
-  onTagChangeEventHandler(event) {
+  onBodyChangeEventHandler(event) {
     this.setState(() => {
       return {
-        tag: event.target.value,
+        body: event.target.innerHTML,
       }
     })
   }
@@ -38,21 +38,32 @@ class NoteInput extends React.Component {
 
   render() {
     return (
-      <form className="note-input" onSubmit={this.onSubmitEventHandler}>
-        <input
-          type="text"
-          placeholder="Nama"
-          value={this.state.name}
-          onChange={this.onNameChangeEventHandler}
-        />
-        <input
-          type="text"
-          placeholder="Tag"
-          value={this.state.tag}
-          onChange={this.onTagChangeEventHandler}
-        />
-        <button type="submit">Tambah</button>
-      </form>
+      <div className="px-4 lg:px-8 pb-8">
+        <form className="flex flex-col" onSubmit={this.onSubmitEventHandler}>
+          <input
+            type="text"
+            placeholder="Masukan Judul"
+            className="bg-white border text-sm rounded block w-full px-4 py-4"
+            value={this.state.title}
+            onChange={this.onTitleChangeEventHandler}
+          />
+          <div
+            type="text"
+            data-placeholder="Masukan Detail Catatan"
+            className="mt-4 bg-white border min-h-[250px] placeholder:text-black focus:text-primary-dark text-sm rounded focus:ring-primary-blue focus:border-primary-blue block w-full px-4 py-4"
+            value={this.state.body}
+            onInput={this.onBodyChangeEventHandler}
+            contentEditable
+          />
+          <button
+            className="mt-5 bg-blue-400 p-2 ml-auto font-semibold text-white rounded w-48"
+            type="submit"
+            onClick={this.onSubmitEventHandler}
+          >
+            Tambah
+          </button>
+        </form>
+      </div>
     )
   }
 }

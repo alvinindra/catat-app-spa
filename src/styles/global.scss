@@ -5,3 +5,8 @@
 :root {
   font-family: 'Inter', sans-serif;
 }
+
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: theme('colors.gray.400');
+}

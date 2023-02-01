@@ -17,6 +17,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "html-react-parser": "^3.0.8",
     "path": "^0.12.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

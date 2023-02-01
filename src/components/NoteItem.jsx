@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { formatDate } from '@/utils/data'
 import PropTypes from 'prop-types'
 
-function NoteItem({ title, body, date }) {
+function NoteItem({ id, title, body, date }) {
   return (
     <Link
       className="flex flex-col px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
     border-2 border-transparent hover:border-blue-500 cursor-pointer transition"
-      to={'/note/' + 4}
+      to={'/note/' + id}
     >
       <div className="text-base capitalize font-semibold">
         <h3 className="mb-2">{title}</h3>
@@ -28,6 +28,7 @@ function NoteItem({ title, body, date }) {
 }
 
 NoteItem.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
