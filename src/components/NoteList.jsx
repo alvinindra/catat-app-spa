@@ -1,16 +1,17 @@
 import NoteItem from './NoteItem'
 import PropTypes from 'prop-types'
 
-function NoteList({ listNote }) {
-  return listNote ? (
-    <div className="px-4 lg:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      {listNote.map((note) => (
+export default function NoteList({ notes, handleDeleteNote }) {
+  return notes.length ? (
+    <div className="px-4 lg:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
+      {notes.map((note) => (
         <NoteItem
           key={note.id}
           id={note.id}
           title={note.title}
           body={note.body}
           date={note.createdAt}
+          handleDeleteNote={handleDeleteNote}
         />
       ))}
     </div>
@@ -22,7 +23,6 @@ function NoteList({ listNote }) {
 }
 
 NoteList.propTypes = {
-  listNote: PropTypes.arrayOf(PropTypes.object).isRequired,
+  notes: PropTypes.arrayOf(PropTypes.object),
+  handleDeleteNote: PropTypes.func,
 }
-
-export default NoteList

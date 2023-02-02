@@ -9,8 +9,14 @@ export default function NotePage() {
 
   return (
     <section>
-      <NoteAppHeader note={note} />
-      <NoteDetail note={note} />
+      {note ? (
+        <>
+          <NoteAppHeader note={note} />
+          <NoteDetail body={note.body} />
+        </>
+      ) : (
+        'Yang Kamu Cari Ga Ada'
+      )}
     </section>
   )
 }

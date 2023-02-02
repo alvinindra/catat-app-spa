@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import NoteInput from '@/components/NoteInput'
 import NoteAppHeader from '@/components/NoteAppHeader'
 
-function AddPage() {
+export default function AddPage() {
   const navigate = useNavigate()
 
-  function onAddNoteHandler(note) {
+  const onAddNoteHandler = (note) => {
     addNote(note)
     navigate('/')
   }
@@ -20,5 +20,3 @@ function AddPage() {
     </section>
   )
 }
-
-export default AddPage

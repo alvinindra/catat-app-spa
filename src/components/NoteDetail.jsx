@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types'
 import parser from 'html-react-parser'
 
-function NoteDetail({ note }) {
-  return <div className="px-4 lg:px-8 pb-8 text-md lg:text-lg">{parser(note.body)}</div>
+export default function NoteDetail({ body }) {
+  return <div className="px-4 lg:px-8 pb-8 text-md lg:text-lg">{parser(body)}</div>
 }
 
 NoteDetail.propTypes = {
-  note: PropTypes.object.isRequired,
+  body: PropTypes.string,
 }
-
-export default NoteDetail

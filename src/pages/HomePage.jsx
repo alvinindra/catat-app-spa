@@ -1,14 +1,21 @@
 import NoteAppHeader from '@/components/NoteAppHeader'
 import NoteList from '@/components/NoteList'
-import { getAllNotes } from '@/utils/data'
+import { getAllNotes, deleteNote } from '@/utils/data'
+import { useState } from 'react'
 
 export default function HomePage() {
-  const listNote = getAllNotes()
+  const [notes, setNotes] = useState(getAllNotes())
+
+  const handleDeleteNote = (event, id) => {
+    event.preventDefault()
+    deleteNote(id)
+    setNotes(getAllNotes())
+  }
 
   return (
     <section>
-      <NoteAppHeader totalNote={listNote.length} />
-      <NoteList listNote={listNote} />
+      <NoteAppHeader totalNote={notes.length} />
+      <NoteList notes={notes} handleDeleteNote={handleDeleteNote} />
     </section>
   )
 }
