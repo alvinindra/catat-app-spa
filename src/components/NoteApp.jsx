@@ -3,6 +3,7 @@ import HomePage from '@/pages/HomePage'
 import ArchievedPage from '@/pages/ArchievedPage'
 import AddPage from '@/pages/AddPage'
 import NotePage from '@/pages/NotePage'
+import NotFoundPage from '@/pages/NotFoundPage'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route path="/notes/archieved" element={<ArchievedPage />} />
           <Route path="/notes/new" element={<AddPage />} />
           <Route path="/notes/:id" element={<NotePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>

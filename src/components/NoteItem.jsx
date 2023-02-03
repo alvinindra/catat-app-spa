@@ -25,11 +25,11 @@ export default function NoteItem({
 
   return (
     <Link
-      className="relative flex flex-col px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
+      className="relative px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
     border-2 border-transparent cursor-pointer transition"
       to={`/notes/${id}`}
     >
-      <div className="z-2">
+      <div className="z-2 h-full flex flex-col">
         <div className="text-base capitalize font-semibold">
           <h3 className="mb-2">{title}</h3>
         </div>

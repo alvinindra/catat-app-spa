@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import NoteItem from './NoteItem'
 import PropTypes from 'prop-types'
 
@@ -7,6 +8,9 @@ export default function NoteList({
   handleArchieveNote,
   handleUnArchieveNote,
 }) {
+  const location = useLocation()
+  const isArchievedPage = location.pathname === '/notes/archieved'
+
   return notes.length ? (
     <div className="px-4 lg:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
       {notes.map((note) => (
@@ -25,7 +29,7 @@ export default function NoteList({
     </div>
   ) : (
     <div className="p-4 py-8 text-lg bg-gray-100 rounded w-full text-center font-medium">
-      Tidak Ada Catatan
+      {isArchievedPage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
     </div>
   )
 }
