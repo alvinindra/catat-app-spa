@@ -2,8 +2,9 @@ import { FiChevronLeft, FiPlus, FiArchive, FiTrash2 } from 'react-icons/fi'
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
 import { deleteNote, formatDate } from '@/utils/data'
 import PropTypes from 'prop-types'
+import SearchBox from './SearchBox/SearchBox'
 
-export default function NoteAppHeader({ note, totalNote }) {
+export default function NoteAppHeader({ note, totalNote, handleChangeKeyword }) {
   const navigate = useNavigate()
   const location = useLocation()
   const { id } = useParams()
@@ -23,9 +24,10 @@ export default function NoteAppHeader({ note, totalNote }) {
   const isNeedBackBtn = [`/notes/${id}`, '/notes/new', '/notes/archieved'].includes(
     location.pathname
   )
+  const isNeedSearchBox = ['/', '/notes/archieved'].includes(location.pathname)
 
   return (
-    <div className="flex bg-gray-100 px-8 py-12 rounded-b-lg md:rounded-lg mb-8 text-left">
+    <div className="relative flex bg-gray-100 px-8 py-12 rounded-b-lg md:rounded-lg mb-12 text-left">
       <div className="relative">
         <div className="flex flex-row">
           {isNeedBackBtn && (
@@ -88,6 +90,7 @@ export default function NoteAppHeader({ note, totalNote }) {
           </button>
         </div>
       )}
+      {isNeedSearchBox && <SearchBox handleChangeKeyword={handleChangeKeyword} />}
     </div>
   )
 }
@@ -96,4 +99,5 @@ NoteAppHeader.propTypes = {
   note: PropTypes.object,
   totalNote: PropTypes.number,
   handleDeleteNote: PropTypes.func,
+  handleChangeKeyword: PropTypes.func,
 }

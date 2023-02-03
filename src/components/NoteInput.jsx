@@ -52,7 +52,7 @@ export default function NoteInput({ addNote }) {
         <input
           type="text"
           placeholder="Masukan Judul"
-          className="bg-white border text-sm rounded block w-full px-4 py-4"
+          className="bg-white border outline-blue-400 text-sm rounded block w-full px-4 py-4"
           value={noteData.title}
           onChange={handleChangeTitle}
         />
@@ -62,7 +62,7 @@ export default function NoteInput({ addNote }) {
         <div
           type="text"
           data-placeholder="Masukan Detail Catatan"
-          className="bg-white border min-h-[250px] placeholder:text-black focus:text-primary-dark text-sm rounded focus:ring-primary-blue focus:border-primary-blue block w-full px-4 py-4"
+          className="bg-white border outline-blue-400 min-h-[250px] placeholder:text-black focus:text-primary-dark text-sm rounded focus:ring-primary-blue focus:border-primary-blue block w-full px-4 py-4"
           value={noteData.body}
           onInput={handleChangeBody}
           contentEditable

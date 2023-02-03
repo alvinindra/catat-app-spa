@@ -24,9 +24,17 @@ export default function HomePage() {
     setNotes(getActiveNotes())
   }
 
+  const handleChangeKeyword = (keyword) => {
+    if (keyword.length) {
+      setNotes(notes.filter((note) => note.title.toLowerCase().includes(keyword.toLowerCase())))
+    } else {
+      setNotes(getActiveNotes())
+    }
+  }
+
   return (
     <section>
-      <NoteAppHeader totalNote={notes.length} />
+      <NoteAppHeader totalNote={notes.length} handleChangeKeyword={handleChangeKeyword} />
       <NoteList
         notes={notes}
         handleDeleteNote={handleDeleteNote}
