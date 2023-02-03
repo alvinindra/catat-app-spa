@@ -13,21 +13,28 @@ export default function NoteAppHeader({ note, totalNote }) {
     navigate('/')
   }
 
+  const handleBackBtn = () => {
+    navigate(-1)
+  }
+
   const isHomepage = location.pathname === '/'
+  const isArchievedPage = location.pathname === '/notes/archieved'
   const isNotePage = location.pathname === `/notes/${id}`
-  const isNeedBackBtn = location.pathname === `/notes/${id}` || location.pathname === '/notes/new'
+  const isNeedBackBtn = [`/notes/${id}`, '/notes/new', '/notes/archieved'].includes(
+    location.pathname
+  )
 
   return (
     <div className="flex bg-gray-100 px-8 py-12 rounded-b-lg md:rounded-lg mb-8 text-left">
       <div className="relative">
         <div className="flex flex-row">
           {isNeedBackBtn && (
-            <Link
+            <button
               className="my-auto mr-4 text-2xl cursor-pointer p-2 bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition"
-              to="/"
+              onClick={handleBackBtn}
             >
               <FiChevronLeft />
-            </Link>
+            </button>
           )}
           {isNotePage && (
             <div className="flex flex-col">
@@ -35,13 +42,19 @@ export default function NoteAppHeader({ note, totalNote }) {
               <div className="text-xs text-gray-600">Dibuat: {formatDate(note.createdAt)}</div>
             </div>
           )}
-          {location.pathname === '/' && (
+          {(isHomepage || isArchievedPage) && (
             <div className="flex flex-col">
-              <h1 className="text-3xl text-blue-400 font-bold my-auto transition">Catatan</h1>
-              <p className="flex flex-row text-sm font-medium text-gray-600">
-                <span>Total {totalNote} catatan</span>
-                <span className="hidden md:block">&nbsp;yang telah dibuat</span>
-              </p>
+              <h1 className="text-3xl text-blue-400 font-bold my-auto transition">
+                {isArchievedPage && 'Arsip'} Catatan
+              </h1>
+              {totalNote > 0 && (
+                <p className="flex flex-row text-sm font-medium text-gray-600">
+                  <span>Total {totalNote} catatan</span>
+                  <span className="hidden md:block">
+                    &nbsp;yang telah {isArchievedPage ? 'diarsip' : 'dibuat'}
+                  </span>
+                </p>
+              )}
             </div>
           )}
           {location.pathname === '/notes/new' && (
@@ -58,7 +71,7 @@ export default function NoteAppHeader({ note, totalNote }) {
             <FiPlus />
           </Link>
           <Link
-            to="/archieve"
+            to="/notes/archieved"
             className="cursor-pointer p-2 text-2xl bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition"
           >
             <FiArchive />

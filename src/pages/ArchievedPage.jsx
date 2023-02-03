@@ -1,27 +1,27 @@
 import NoteAppHeader from '@/components/NoteAppHeader'
 import NoteList from '@/components/NoteList'
-import { deleteNote, archiveNote, unarchiveNote, getActiveNotes } from '@/utils/data'
+import { getArchievedNotes, deleteNote, archiveNote, unarchiveNote } from '@/utils/data'
 import { useState } from 'react'
 
-export default function HomePage() {
-  const [notes, setNotes] = useState(getActiveNotes())
+export default function ArchievedPage() {
+  const [notes, setNotes] = useState(getArchievedNotes())
 
   const handleDeleteNote = (event, id) => {
     event.preventDefault()
     deleteNote(id)
-    setNotes(getActiveNotes())
+    setNotes(getArchievedNotes())
   }
 
   const handleArchieveNote = (event, id) => {
     event.preventDefault()
     archiveNote(id)
-    setNotes(getActiveNotes())
+    setNotes(getArchievedNotes())
   }
 
   const handleUnArchieveNote = (event, id) => {
     event.preventDefault()
     unarchiveNote(id)
-    setNotes(getActiveNotes())
+    setNotes(getArchievedNotes())
   }
 
   return (
