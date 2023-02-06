@@ -4,7 +4,7 @@ import { deleteNote, formatDate } from '@/utils/data'
 import PropTypes from 'prop-types'
 import SearchBox from './SearchBox/SearchBox'
 
-export default function NoteAppHeader({ note, totalNote, handleChangeKeyword }) {
+export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, searchKeyword }) {
   const navigate = useNavigate()
   const location = useLocation()
   const { id } = useParams()
@@ -90,7 +90,9 @@ export default function NoteAppHeader({ note, totalNote, handleChangeKeyword }) 
           </button>
         </div>
       )}
-      {isNeedSearchBox && <SearchBox handleChangeKeyword={handleChangeKeyword} />}
+      {isNeedSearchBox && (
+        <SearchBox handleSearchKeyPress={handleSearchKeyPress} searchKeyword={searchKeyword} />
+      )}
     </div>
   )
 }
@@ -99,5 +101,6 @@ NoteAppHeader.propTypes = {
   note: PropTypes.object,
   totalNote: PropTypes.number,
   handleDeleteNote: PropTypes.func,
-  handleChangeKeyword: PropTypes.func,
+  handleSearchKeyPress: PropTypes.func,
+  searchKeyword: PropTypes.string,
 }
