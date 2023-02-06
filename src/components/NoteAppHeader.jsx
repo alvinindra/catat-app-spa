@@ -19,12 +19,12 @@ export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, s
   }
 
   const isHomepage = location.pathname === '/'
-  const isArchievedPage = location.pathname === '/notes/archieved'
+  const isArchivedPage = location.pathname === '/notes/archived'
   const isNotePage = location.pathname === `/notes/${id}`
-  const isNeedBackBtn = [`/notes/${id}`, '/notes/new', '/notes/archieved'].includes(
+  const isNeedBackBtn = [`/notes/${id}`, '/notes/new', '/notes/archived'].includes(
     location.pathname
   )
-  const isNeedSearchBox = ['/', '/notes/archieved'].includes(location.pathname)
+  const isNeedSearchBox = ['/', '/notes/archived'].includes(location.pathname)
 
   return (
     <div className="relative flex bg-gray-100 px-8 py-12 rounded-b-lg md:rounded-lg mb-12 text-left">
@@ -44,16 +44,16 @@ export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, s
               <div className="text-xs text-gray-600">Dibuat: {formatDate(note.createdAt)}</div>
             </div>
           )}
-          {(isHomepage || isArchievedPage) && (
+          {(isHomepage || isArchivedPage) && (
             <div className="flex flex-col">
               <h1 className="text-3xl text-blue-400 font-bold my-auto transition">
-                {isArchievedPage && 'Arsip'} Catatan
+                {isArchivedPage && 'Arsip'} Catatan
               </h1>
               {totalNote > 0 && (
                 <p className="flex flex-row text-sm font-medium text-gray-600">
                   <span>Total {totalNote} catatan</span>
                   <span className="hidden md:block">
-                    &nbsp;yang telah {isArchievedPage ? 'diarsip' : 'dibuat'}
+                    &nbsp;yang telah {isArchivedPage ? 'diarsip' : 'dibuat'}
                   </span>
                 </p>
               )}
@@ -73,7 +73,7 @@ export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, s
             <FiPlus />
           </Link>
           <Link
-            to="/notes/archieved"
+            to="/notes/archived"
             className="cursor-pointer p-2 text-2xl bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition"
           >
             <FiArchive />

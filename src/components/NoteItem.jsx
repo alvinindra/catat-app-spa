@@ -10,17 +10,17 @@ export default function NoteItem({
   title,
   body,
   date,
-  archieved,
+  archived,
   handleDeleteNote,
   handleArchieveNote,
   handleUnArchieveNote,
 }) {
   const location = useLocation()
-  const isArchievedPage = location.pathname === '/notes/archieved'
+  const isArchivedPage = location.pathname === '/notes/archived'
 
   const handleArchieveEvent = (event) => {
     event.preventDefault()
-    isArchievedPage ? handleUnArchieveNote(event, id) : handleArchieveNote(event, id)
+    isArchivedPage ? handleUnArchieveNote(event, id) : handleArchieveNote(event, id)
   }
 
   return (
@@ -43,7 +43,7 @@ export default function NoteItem({
         <div className="absolute right-0 bottom-[-16px]">
           <button
             className={clsx(
-              archieved && '!bg-blue-600',
+              archived && '!bg-blue-600',
               'cursor-pointer mr-3 p-2 bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition'
             )}
             onClick={(event) => handleArchieveEvent(event, id)}
@@ -67,7 +67,7 @@ NoteItem.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  archieved: PropTypes.bool.isRequired,
+  archived: PropTypes.bool.isRequired,
   handleDeleteNote: PropTypes.func.isRequired,
   handleArchieveNote: PropTypes.func.isRequired,
   handleUnArchieveNote: PropTypes.func.isRequired,

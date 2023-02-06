@@ -9,7 +9,7 @@ export default function NoteList({
   handleUnArchieveNote,
 }) {
   const location = useLocation()
-  const isArchievedPage = location.pathname === '/notes/archieved'
+  const isArchivedPage = location.pathname === '/notes/archived'
 
   return notes.length ? (
     <div className="px-4 lg:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
@@ -20,7 +20,7 @@ export default function NoteList({
           title={note.title}
           body={note.body}
           date={note.createdAt}
-          archieved={note.archieved}
+          archived={note.archived}
           handleDeleteNote={handleDeleteNote}
           handleArchieveNote={handleArchieveNote}
           handleUnArchieveNote={handleUnArchieveNote}
@@ -29,7 +29,7 @@ export default function NoteList({
     </div>
   ) : (
     <div className="p-4 py-8 text-lg bg-gray-100 rounded w-full text-center font-medium">
-      {isArchievedPage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
+      {isArchivedPage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
     </div>
   )
 }
