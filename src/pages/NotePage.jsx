@@ -2,6 +2,7 @@ import NoteAppHeader from '@/components/NoteAppHeader'
 import NoteDetail from '@/components/NoteDetail'
 import { useParams } from 'react-router-dom'
 import { getNote } from '@/utils/data'
+import LayoutNotFound from '@/components/Layout/LayoutNotFound'
 
 export default function NotePage() {
   const { id } = useParams()
@@ -15,7 +16,7 @@ export default function NotePage() {
           <NoteDetail body={note.body} />
         </>
       ) : (
-        'Yang Kamu Cari Ga Ada'
+        <LayoutNotFound title="catatan" />
       )}
     </section>
   )
