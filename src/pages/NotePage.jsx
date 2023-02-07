@@ -1,4 +1,4 @@
-import NoteAppHeader from '@/components/NoteAppHeader'
+import LayoutAppHeader from '@/components/Layout/LayoutAppHeader'
 import NoteDetail from '@/components/NoteDetail'
 import { useParams } from 'react-router-dom'
 import { getNote } from '@/utils/data'
@@ -12,7 +12,7 @@ export default function NotePage() {
     <section>
       {note ? (
         <>
-          <NoteAppHeader note={note} />
+          <LayoutAppHeader note={note} />
           <NoteDetail body={note.body} />
         </>
       ) : (

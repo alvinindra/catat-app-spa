@@ -1,4 +1,4 @@
-import NoteAppHeader from '@/components/NoteAppHeader'
+import LayoutAppHeader from '@/components/Layout/LayoutAppHeader'
 import NoteList from '@/components/NoteList'
 import { getArchivedNotes, deleteNote, archiveNote, unarchiveNote } from '@/utils/data'
 import { useEffect } from 'react'
@@ -46,7 +46,7 @@ export default function ArchivedPage() {
 
   return (
     <section>
-      <NoteAppHeader
+      <LayoutAppHeader
         totalNote={notes.length}
         handleSearchKeyPress={handleSearchKeyPress}
         searchKeyword={searchKeyword}

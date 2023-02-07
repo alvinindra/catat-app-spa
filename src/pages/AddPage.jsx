@@ -3,7 +3,7 @@ import { addNote } from '@/utils/data'
 import { useNavigate } from 'react-router-dom'
 
 import NoteInput from '@/components/NoteInput'
-import NoteAppHeader from '@/components/NoteAppHeader'
+import LayoutAppHeader from '@/components/Layout/LayoutAppHeader'
 
 export default function AddPage() {
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ export default function AddPage() {
 
   return (
     <section>
-      <NoteAppHeader />
+      <LayoutAppHeader />
       <NoteInput addNote={onAddNoteHandler} />
     </section>
   )

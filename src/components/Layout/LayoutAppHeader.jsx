@@ -2,9 +2,9 @@ import { FiChevronLeft, FiPlus, FiArchive, FiTrash2 } from 'react-icons/fi'
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
 import { deleteNote, formatDate } from '@/utils/data'
 import PropTypes from 'prop-types'
-import SearchBox from './SearchBox/SearchBox'
+import SearchBox from '../SearchBox/SearchBox'
 
-export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, searchKeyword }) {
+export default function LayoutAppHeader({ note, totalNote, handleSearchKeyPress, searchKeyword }) {
   const navigate = useNavigate()
   const location = useLocation()
   const { id } = useParams()
@@ -97,7 +97,7 @@ export default function NoteAppHeader({ note, totalNote, handleSearchKeyPress, s
   )
 }
 
-NoteAppHeader.propTypes = {
+LayoutAppHeader.propTypes = {
   note: PropTypes.object,
   totalNote: PropTypes.number,
   handleDeleteNote: PropTypes.func,
