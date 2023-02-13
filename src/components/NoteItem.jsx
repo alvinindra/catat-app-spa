@@ -25,7 +25,7 @@ export default function NoteItem({
 
   return (
     <Link
-      className="relative px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
+      className="shadow relative px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
     border-2 border-transparent cursor-pointer transition"
       to={`/notes/${id}`}
     >

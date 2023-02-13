@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 import LayoutNotFound from '@/components/Layout/LayoutNotFound'
 
 export default function NotFoundPage() {
