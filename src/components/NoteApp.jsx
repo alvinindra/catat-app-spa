@@ -14,7 +14,7 @@ import LoadingSpinner from './Base/LoadingSpinner'
 
 export default function App() {
   const navigate = useNavigate()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [authedUser, setAuthedUser] = useState(null)
 
   const initData = async () => {
@@ -30,11 +30,11 @@ export default function App() {
 
     const data = await initData()
     navigate('/')
-    toast.success(`Halo, ${data.full_name}!`)
+    toast.success(`Halo, ${data.name}!`)
   }
 
   useEffect(() => {
-    // initData()
+    initData()
   }, [])
 
   return (
