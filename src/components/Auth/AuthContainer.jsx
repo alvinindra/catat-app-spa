@@ -20,5 +20,5 @@ export default function AuthContainer({ isLoginDisplay, onLoginSuccess }) {
 
 AuthContainer.propTypes = {
   isLoginDisplay: PropTypes.bool.isRequired,
-  onLoginSuccess: PropTypes.func.isRequired,
+  onLoginSuccess: PropTypes.func,
 }
