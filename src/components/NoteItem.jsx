@@ -43,7 +43,7 @@ export default function NoteItem({
         <div className="absolute right-0 bottom-[-16px]">
           <button
             className={clsx(
-              archived && '!bg-blue-600',
+              archived && '!bg-sky-700',
               'cursor-pointer mr-3 p-2 bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition'
             )}
             onClick={(event) => handleArchieveEvent(event, id)}

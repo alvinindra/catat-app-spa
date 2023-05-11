@@ -1,62 +1,89 @@
 import LayoutAppHeader from '@/components/Layout/LayoutAppHeader'
 import NoteList from '@/components/NoteList'
-import { deleteNote, archiveNote, unarchiveNote, getActiveNotes } from '@/utils/data'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { deleteNote, archiveNote, unarchiveNote, getActiveNotes } from '@/api/note'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import LoadingSpinner from '@/components/Base/LoadingSpinner'
 
 export default function HomePage() {
+  const [isLoading, setIsLoading] = useState(false)
   const [keywordParams, setKeywordParams] = useSearchParams()
-  const [notes, setNotes] = useState(getActiveNotes())
+  const [notes, setNotes] = useState([])
+
   const keyword = keywordParams.get('keyword')
   const [searchKeyword, setSearchKeyword] = useState(keyword || '')
+
+  useEffect(() => {
+    const getNotes = async () => {
+      await getActiveNotes().then((res) => {
+        setNotes(res.data)
+        setIsLoading(false)
+      })
+    }
+
+    getNotes()
+  }, [])
+
+  useEffect(() => {
+    const searchedNotes = async () => {
+      await getActiveNotes().then((res) => {
+        setNotes(() =>
+          res.data.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase()))
+        )
+        setIsLoading(false)
+      })
+    }
+
+    if (searchKeyword.length) searchedNotes()
+  }, [searchKeyword])
+
+  const getLatestNotes = async () => {
+    await getActiveNotes().then((res) => {
+      setNotes(res.data)
+    })
+  }
 
   const handleSearchKeyPress = (keyword) => {
     setSearchKeyword(keyword)
     setKeywordParams({ keyword })
   }
 
-  const handleDeleteNote = (event, id) => {
+  const handleDeleteNote = async (event, id) => {
     event.preventDefault()
-    deleteNote(id)
-    setNotes(getActiveNotes())
+    await deleteNote(id)
+    await getLatestNotes()
   }
 
-  const handleArchieveNote = (event, id) => {
+  const handleArchieveNote = async (event, id) => {
     event.preventDefault()
-    archiveNote(id)
-    setNotes(getActiveNotes())
+    await archiveNote(id)
+    await getLatestNotes()
   }
 
-  const handleUnArchieveNote = (event, id) => {
+  const handleUnArchieveNote = async (event, id) => {
     event.preventDefault()
-    unarchiveNote(id)
-    setNotes(getActiveNotes())
+    await unarchiveNote(id)
+    await getLatestNotes()
   }
-
-  useEffect(() => {
-    if (searchKeyword.length) {
-      setNotes(
-        notes.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase()))
-      )
-    } else {
-      setNotes(getActiveNotes())
-    }
-  }, [searchKeyword])
 
   return (
     <section>
       <LayoutAppHeader
-        totalNote={notes.length}
+        totalNote={notes?.length}
         handleSearchKeyPress={handleSearchKeyPress}
         searchKeyword={searchKeyword}
       />
-      <NoteList
-        notes={notes}
-        handleDeleteNote={handleDeleteNote}
-        handleArchieveNote={handleArchieveNote}
-        handleUnArchieveNote={handleUnArchieveNote}
-      />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <NoteList
+          notes={notes}
+          isLoading={isLoading}
+          handleDeleteNote={handleDeleteNote}
+          handleArchieveNote={handleArchieveNote}
+          handleUnArchieveNote={handleUnArchieveNote}
+        />
+      )}
     </section>
   )
 }

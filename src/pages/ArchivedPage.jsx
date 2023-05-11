@@ -1,62 +1,90 @@
+import LoadingSpinner from '@/components/Base/LoadingSpinner'
 import LayoutAppHeader from '@/components/Layout/LayoutAppHeader'
 import NoteList from '@/components/NoteList'
-import { getArchivedNotes, deleteNote, archiveNote, unarchiveNote } from '@/utils/data'
+import { getArchivedNotes, deleteNote, archiveNote, unarchiveNote } from '@/api/note'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
 export default function ArchivedPage() {
+  const [isLoading, setIsLoading] = useState(false)
   const [keywordParams, setKeywordParams] = useSearchParams()
-  const [notes, setNotes] = useState(getArchivedNotes())
+  const [notes, setNotes] = useState()
+
   const keyword = keywordParams.get('keyword')
   const [searchKeyword, setSearchKeyword] = useState(keyword || '')
+
+  useEffect(() => {
+    const getNotes = async () => {
+      await getArchivedNotes().then((res) => {
+        setNotes(res.data)
+        setIsLoading(false)
+      })
+    }
+
+    getNotes()
+  }, [])
+
+  useEffect(() => {
+    const searchedNotes = async () => {
+      await getArchivedNotes().then((res) => {
+        setNotes(() =>
+          res.data.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase()))
+        )
+        setIsLoading(false)
+      })
+    }
+
+    if (searchKeyword.length) searchedNotes()
+  }, [searchKeyword])
+
+  const getLatestArchivedNotes = async () => {
+    await getArchivedNotes().then((res) => {
+      setNotes(res.data)
+    })
+  }
 
   const handleSearchKeyPress = (keyword) => {
     setSearchKeyword(keyword)
     setKeywordParams({ keyword })
   }
 
-  const handleDeleteNote = (event, id) => {
+  const handleDeleteNote = async (event, id) => {
     event.preventDefault()
-    deleteNote(id)
-    setNotes(getArchivedNotes())
+    await deleteNote(id)
+    await getLatestArchivedNotes()
   }
 
-  const handleArchieveNote = (event, id) => {
+  const handleArchieveNote = async (event, id) => {
     event.preventDefault()
-    archiveNote(id)
-    setNotes(getArchivedNotes())
+    await archiveNote(id)
+    await getLatestArchivedNotes()
   }
 
-  const handleUnArchieveNote = (event, id) => {
+  const handleUnArchieveNote = async (event, id) => {
     event.preventDefault()
-    unarchiveNote(id)
-    setNotes(getArchivedNotes())
+    await unarchiveNote(id)
+    await getLatestArchivedNotes()
   }
-
-  useEffect(() => {
-    if (searchKeyword.length) {
-      setNotes(
-        notes.filter((note) => note.title.toLowerCase().includes(searchKeyword.toLowerCase()))
-      )
-    } else {
-      setNotes(getArchivedNotes())
-    }
-  }, [searchKeyword])
 
   return (
     <section>
       <LayoutAppHeader
-        totalNote={notes.length}
+        totalNote={notes?.length}
         handleSearchKeyPress={handleSearchKeyPress}
         searchKeyword={searchKeyword}
       />
-      <NoteList
-        notes={notes}
-        handleDeleteNote={handleDeleteNote}
-        handleArchieveNote={handleArchieveNote}
-        handleUnArchieveNote={handleUnArchieveNote}
-      />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <NoteList
+          notes={notes}
+          isLoading={isLoading}
+          handleDeleteNote={handleDeleteNote}
+          handleArchieveNote={handleArchieveNote}
+          handleUnArchieveNote={handleUnArchieveNote}
+        />
+      )}
     </section>
   )
 }
