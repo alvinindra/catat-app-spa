@@ -38,8 +38,10 @@ export default function HomePage() {
   }, [searchKeyword])
 
   const getLatestNotes = async () => {
+    setIsLoading(true)
     await getActiveNotes().then((res) => {
       setNotes(res.data)
+      setIsLoading(false)
     })
   }
 

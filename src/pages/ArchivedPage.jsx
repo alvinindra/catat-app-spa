@@ -39,8 +39,10 @@ export default function ArchivedPage() {
   }, [searchKeyword])
 
   const getLatestArchivedNotes = async () => {
+    setIsLoading(true)
     await getArchivedNotes().then((res) => {
       setNotes(res.data)
+      setIsLoading(false)
     })
   }
 
