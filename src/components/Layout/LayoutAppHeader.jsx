@@ -1,6 +1,7 @@
 import { FiChevronLeft, FiPlus, FiArchive, FiTrash2 } from 'react-icons/fi'
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
-import { deleteNote, formatDate } from '@/utils/data'
+import { formatDate } from '@/utils/data'
+import { deleteNote } from '@/api/note'
 import PropTypes from 'prop-types'
 import SearchBox from '../SearchBox/SearchBox'
 
