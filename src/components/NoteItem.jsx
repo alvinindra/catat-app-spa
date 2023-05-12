@@ -25,11 +25,11 @@ export default function NoteItem({
 
   return (
     <Link
-      className="shadow relative px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
+      className="shadow relative px-4 md:px-6 py-3 bg-gray-100 dark:bg-stone-700 rounded-lg 
     border-2 border-transparent cursor-pointer transition"
       to={`/notes/${id}`}
     >
-      <div className="z-2 h-full flex flex-col">
+      <div className="z-2 h-full flex flex-col dark:text-white">
         <div className="text-base capitalize font-semibold">
           <h3 className="mb-2">{title}</h3>
         </div>
@@ -38,7 +38,7 @@ export default function NoteItem({
         </div>
         <div className="border-t border-blue-300 my-3" />
         <div className="flex">
-          <p className="text-xs text-gray-600">{formatDate(date)}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-300">{formatDate(date)}</p>
         </div>
         <div className="absolute right-0 bottom-[-16px]">
           <button

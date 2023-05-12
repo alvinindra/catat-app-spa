@@ -36,6 +36,7 @@ export default function ArchivedPage() {
     }
 
     if (searchKeyword.length) searchedNotes()
+    else getLatestArchivedNotes()
   }, [searchKeyword])
 
   const getLatestArchivedNotes = async () => {

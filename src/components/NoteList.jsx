@@ -28,7 +28,7 @@ export default function NoteList({
       ))}
     </div>
   ) : (
-    <div className="p-4 py-8 text-lg bg-gray-100 rounded w-full text-center font-medium">
+    <div className="p-4 py-8 text-lg bg-gray-100 dark:bg-stone-700 dark:text-white rounded w-full text-center font-medium">
       {isArchivedPage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
     </div>
   )

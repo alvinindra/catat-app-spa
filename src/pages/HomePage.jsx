@@ -35,6 +35,7 @@ export default function HomePage() {
     }
 
     if (searchKeyword.length) searchedNotes()
+    else getLatestNotes()
   }, [searchKeyword])
 
   const getLatestNotes = async () => {
