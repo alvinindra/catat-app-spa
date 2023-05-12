@@ -101,7 +101,7 @@ export default function LayoutAppHeader({ note, totalNote, handleSearchKeyPress,
       )}
       <div className="flex flex-row gap-3 ml-3 my-auto">
         <button
-          className="cursor-pointer p-2 text-2xl bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition"
+          className="cursor-pointer p-2 text-2xl bg-stone-700 text-white dark:text-stone-700 dark:bg-white  rounded transition"
           onClick={() => setTheme(colorTheme)}
         >
           {colorTheme === 'dark' ? <FiMoon /> : <FiSun />}

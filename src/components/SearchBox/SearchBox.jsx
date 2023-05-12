@@ -6,7 +6,7 @@ export default function SearchBox({ searchKeyword, handleSearchKeyPress }) {
       <input
         type="text"
         placeholder="Cari catatan disini"
-        className="bg-white dark:bg-gray-400 dark:placeholder:text-white border outline-blue-400 dark:outline-blue-50 text-sm block w-[350px] rounded-3xl px-4 py-4"
+        className="bg-white dark:bg-gray-400 dark:placeholder:text-white border outline-blue-400 dark:outline-blue-50 text-sm block w-[300px] rounded-3xl px-4 py-4"
         value={searchKeyword}
         onChange={(event) => handleSearchKeyPress(event.target.value)}
       />

@@ -37,10 +37,10 @@ export default function NoteItem({
           <p className="text-sm line-clamp-4">{parser(body)}</p>
         </div>
         <div className="border-t border-blue-300 my-3" />
-        <div className="flex">
+        <div className="flex mb-3">
           <p className="text-xs text-gray-600 dark:text-gray-300">{formatDate(date)}</p>
         </div>
-        <div className="absolute right-0 bottom-[-16px]">
+        <div className="absolute left-4 sm:left-[unset] sm:right-0 bottom-[-16px]">
           <button
             className={clsx(
               archived && '!bg-sky-700',
