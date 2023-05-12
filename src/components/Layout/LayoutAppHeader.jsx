@@ -1,12 +1,16 @@
 import { FiChevronLeft, FiPlus, FiArchive, FiMoon, FiSun, FiTrash } from 'react-icons/fi'
 import { useLocation, useParams, Link, useNavigate } from 'react-router-dom'
-import { formatDate } from '@/utils/data'
+import { formatDate, formatDateEnglish } from '@/utils/data'
 import { deleteNote } from '@/api/note'
 import PropTypes from 'prop-types'
 import SearchBox from '../SearchBox/SearchBox'
 import useDarkside from '@/hooks/useDarkside'
+import LocaleContext from '@/contexts/LocaleContext'
+import { useContext } from 'react'
+import { HeaderLocale } from '@/locale/page-header-locale'
 
 export default function LayoutAppHeader({ note, totalNote, handleSearchKeyPress, searchKeyword }) {
+  const { locale } = useContext(LocaleContext)
   const [colorTheme, setTheme] = useDarkside()
   const navigate = useNavigate()
   const location = useLocation()
@@ -47,20 +51,24 @@ export default function LayoutAppHeader({ note, totalNote, handleSearchKeyPress,
                 {note.title}
               </h1>
               <div className="text-xs text-gray-600 dark:text-gray-300">
-                Dibuat: {formatDate(note.createdAt)}
+                {HeaderLocale[locale].createdDetail}&nbsp;
+                {locale === 'en' ? formatDateEnglish(note.createdAt) : formatDate(note.createdAt)}
               </div>
             </div>
           )}
           {(isHomepage || isArchivedPage) && (
             <div className="flex flex-col">
               <h1 className="text-3xl text-blue-400 dark:text-white font-bold my-auto transition">
-                {isArchivedPage && 'Arsip'} Catatan
+                {isArchivedPage ? HeaderLocale[locale].titleArchive : HeaderLocale[locale].title}
               </h1>
               {totalNote > 0 && (
                 <p className="flex flex-row text-sm font-medium text-gray-600 dark:text-gray-300">
-                  <span>Total {totalNote} catatan</span>
+                  <span>
+                    Total {totalNote} {HeaderLocale[locale].note}
+                  </span>
                   <span className="hidden md:block">
-                    &nbsp;yang telah {isArchivedPage ? 'diarsip' : 'dibuat'}
+                    &nbsp;
+                    {isArchivedPage ? HeaderLocale[locale].archived : HeaderLocale[locale].created}
                   </span>
                 </p>
               )}
@@ -68,7 +76,7 @@ export default function LayoutAppHeader({ note, totalNote, handleSearchKeyPress,
           )}
           {location.pathname === '/notes/new' && (
             <h1 className="text-3xl text-blue-400 dark:text-white font-bold my-auto transition">
-              Tambah Catatan
+              {HeaderLocale[locale].titleAdd}
             </h1>
           )}
         </div>

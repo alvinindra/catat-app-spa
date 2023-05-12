@@ -12,12 +12,12 @@ export default function FloatingActionButton() {
       <div className="fixed bottom-4 right-4">
         <div className="flex flex-col gap-4 flex-shrink-0 justify-center">
           <button
-            className="w-[40px] h-[40px] rounded-full text-white bg-blue-400 font-semibold"
+            className="w-[50px] h-[50px] rounded-full text-white bg-blue-400 font-semibold"
             onClick={toggleLocale}
           >
             {locale === 'id' ? 'en' : 'id'}
           </button>
-          <button className="flex w-[40px] h-[40px] rounded-full text-white bg-blue-400 text-xl">
+          <button className="flex w-[50px] h-[50px] rounded-full text-white bg-blue-400 text-xl">
             <FiLogOut className="m-auto" />
           </button>
         </div>
