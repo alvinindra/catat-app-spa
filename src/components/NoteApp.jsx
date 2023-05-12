@@ -15,6 +15,11 @@ import LoadingSpinner from './Base/LoadingSpinner'
 import LayoutBase from './Layout/LayoutBase'
 import FloatingActionButton from './Fab/FloatingActionButton'
 
+import 'react-confirm-alert/src/react-confirm-alert.css'
+import '@/components/Fab/FloatingActionButton.scss'
+import { confirmAlert } from 'react-confirm-alert'
+import { ConfirmationLocale } from '@/locale/auth-locale'
+
 export default function App() {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
@@ -35,6 +40,32 @@ export default function App() {
     const data = await initData()
     navigate('/')
     toast.success(`Halo, ${data.name}!`)
+  }
+
+  const onLogoutClicked = () => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-confirmation dark:bg-stone-700 dark:text-white">
+            <h1 className="mb-4">{ConfirmationLocale[locale].title}</h1>
+            <div className="flex flex-row gap-4">
+              <button
+                className="bg-blue-400 px-4 py-2 rounded text-white"
+                onClick={() => {
+                  setAuthedUser(null)
+                  putAccessToken('')
+                  toast.success(ConfirmationLocale[locale].alert)
+                  onClose()
+                }}
+              >
+                {ConfirmationLocale[locale].yes}
+              </button>
+              <button onClick={onClose}>{ConfirmationLocale[locale].no}</button>
+            </div>
+          </div>
+        )
+      },
+    })
   }
 
   useEffect(() => {
@@ -73,7 +104,7 @@ export default function App() {
               {authedUser ? (
                 <>
                   <Route path="/*" element={<NotFoundPage />} />
-                  <Route element={<FloatingActionButton />}>
+                  <Route element={<FloatingActionButton onLogoutClicked={onLogoutClicked} />}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/notes/archived" element={<ArchivedPage />} />
                     <Route path="/notes/new" element={<AddPage />} />

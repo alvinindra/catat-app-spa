@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
+import LocaleContext from '@/contexts/LocaleContext'
 import { useContext, useReducer } from 'react'
 import { toast } from 'react-toastify'
 import { login } from '@/api/auth'
 import { Link } from 'react-router-dom'
-import LocaleContext from '@/contexts/LocaleContext'
 import { LoginLocale } from '@/locale/auth-locale'
 
 export default function FormLogin({ onLoginSuccess }) {
@@ -36,7 +36,7 @@ export default function FormLogin({ onLoginSuccess }) {
   }
 
   return (
-    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-stone-800 dark:border-gray-500">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
           {LoginLocale[locale].title}

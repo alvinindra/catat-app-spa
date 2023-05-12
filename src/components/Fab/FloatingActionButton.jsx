@@ -2,8 +2,8 @@ import { Outlet } from 'react-router-dom'
 import { FiLogOut } from 'react-icons/fi'
 import { useContext } from 'react'
 import LocaleContext from '@/contexts/LocaleContext'
-
-export default function FloatingActionButton() {
+import PropTypes from 'prop-types'
+export default function FloatingActionButton({ onLogoutClicked }) {
   const { locale, toggleLocale } = useContext(LocaleContext)
 
   return (
@@ -17,11 +17,18 @@ export default function FloatingActionButton() {
           >
             {locale === 'id' ? 'en' : 'id'}
           </button>
-          <button className="flex w-[50px] h-[50px] rounded-full text-white bg-blue-400 text-xl">
+          <button
+            className="flex w-[50px] h-[50px] rounded-full text-white bg-blue-400 text-xl"
+            onClick={onLogoutClicked}
+          >
             <FiLogOut className="m-auto" />
           </button>
         </div>
       </div>
     </>
   )
+}
+
+FloatingActionButton.propTypes = {
+  onLogoutClicked: PropTypes.func,
 }

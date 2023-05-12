@@ -39,3 +39,18 @@ export const RegisterLocale = {
     login: 'Masuk',
   },
 }
+
+export const ConfirmationLocale = {
+  en: {
+    title: 'Are you sure want to logout?',
+    yes: 'Yes',
+    no: 'No',
+    alert: 'Logout successfully',
+  },
+  id: {
+    title: 'Apakah kamu yakin ingin keluar?',
+    yes: 'Ya',
+    no: 'Tidak',
+    alert: 'Berhasil keluar',
+  },
+}

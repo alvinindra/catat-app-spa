@@ -1,10 +1,14 @@
 import PropTypes from 'prop-types'
 import FormLogin from './FormLogin/FormLogin'
 import FormRegister from './FormRegister/FormRegister'
+import useDarkside from '@/hooks/useDarkside'
 
 export default function AuthContainer({ isLoginDisplay, onLoginSuccess }) {
+  // eslint-disable-next-line no-unused-vars
+  const [colorTheme] = useDarkside()
+
   return (
-    <section className=" dark:bg-gray-900">
+    <section className=" dark:bg-stone-800">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[75vh] lg:py-0">
         <a
           href="/"
