@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import PropTypes from 'prop-types'
+import LocaleContext from '@/contexts/LocaleContext'
+import { AddPageLocale } from '@/locale/page-add-locale'
 
 export default function NoteInput({ addNote }) {
+  const { locale } = useContext(LocaleContext)
   const [isTitleValid, setIsTitleValid] = useState(false)
   const [noteData, setNoteData] = useState({ title: '', body: '' })
 
@@ -42,7 +45,9 @@ export default function NoteInput({ addNote }) {
     <div className="px-4 lg:px-8 pb-8">
       <form className="flex flex-col" onSubmit={handleSubmitNoteData}>
         <div className="flex flex-row mb-2">
-          <div className="lg:text-lg font-semibold ">Judul</div>
+          <div className="lg:text-lg font-semibold dark:text-white">
+            {AddPageLocale[locale].title}
+          </div>
           {isTitleValid && (
             <div className="text-red-400 ml-2 my-auto text-sm">
               *Tidak boleh lebih dari 50 karakter
@@ -51,18 +56,20 @@ export default function NoteInput({ addNote }) {
         </div>
         <input
           type="text"
-          placeholder="Masukan Judul"
-          className="bg-white border outline-blue-400 text-sm rounded block w-full px-4 py-4"
+          placeholder={AddPageLocale[locale].placeholderTitle}
+          className="bg-white dark:bg-stone-500 border outline-blue-400 dark:outline-blue-50 text-sm rounded block w-full px-4 py-4"
           value={noteData.title}
           onChange={handleChangeTitle}
         />
         <div className="mt-4 flex flex-row mb-2">
-          <div className="lg:text-lg font-semibold ">Detail Catatan</div>
+          <div className="lg:text-lg font-semibold dark:text-white">
+            {AddPageLocale[locale].detailNote}
+          </div>
         </div>
         <div
           type="text"
-          data-placeholder="Masukan Detail Catatan"
-          className="bg-white border outline-blue-400 min-h-[250px] placeholder:text-black focus:text-primary-dark text-sm rounded focus:ring-primary-blue focus:border-primary-blue block w-full px-4 py-4"
+          data-placeholder={AddPageLocale[locale].placeholderDetailNote}
+          className="bg-white border dark:bg-stone-500 dark:placeholder:text-white outline-blue-400 dark:outline-blue-50 min-h-[250px] focus:text-primary-dark text-sm rounded focus:ring-primary-blue focus:border-primary-blue block w-full px-4 py-4"
           value={noteData.body}
           onInput={handleChangeBody}
           contentEditable
@@ -72,7 +79,7 @@ export default function NoteInput({ addNote }) {
           type="submit"
           onClick={handleSubmitNoteData}
         >
-          Tambah
+          {AddPageLocale[locale].submit}
         </button>
       </form>
     </div>

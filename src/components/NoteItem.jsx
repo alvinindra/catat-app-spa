@@ -1,9 +1,11 @@
 import { FiTrash2, FiArchive } from 'react-icons/fi'
 import { Link, useLocation } from 'react-router-dom'
-import { formatDate } from '@/utils/data'
+import { formatDate, formatDateEnglish } from '@/utils/data'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import parser from 'html-react-parser'
+import LocaleContext from '@/contexts/LocaleContext'
+import { useContext } from 'react'
 
 export default function NoteItem({
   id,
@@ -15,6 +17,7 @@ export default function NoteItem({
   handleArchieveNote,
   handleUnArchieveNote,
 }) {
+  const { locale } = useContext(LocaleContext)
   const location = useLocation()
   const isArchivedPage = location.pathname === '/notes/archived'
 
@@ -25,11 +28,11 @@ export default function NoteItem({
 
   return (
     <Link
-      className="relative px-4 md:px-6 py-3 bg-gray-100 rounded-lg 
+      className="shadow relative px-4 md:px-6 py-3 bg-gray-100 dark:bg-stone-700 rounded-lg 
     border-2 border-transparent cursor-pointer transition"
       to={`/notes/${id}`}
     >
-      <div className="z-2 h-full flex flex-col">
+      <div className="z-2 h-full flex flex-col dark:text-white">
         <div className="text-base capitalize font-semibold">
           <h3 className="mb-2">{title}</h3>
         </div>
@@ -37,13 +40,15 @@ export default function NoteItem({
           <p className="text-sm line-clamp-4">{parser(body)}</p>
         </div>
         <div className="border-t border-blue-300 my-3" />
-        <div className="flex">
-          <p className="text-xs text-gray-600">{formatDate(date)}</p>
+        <div className="flex mb-3">
+          <p className="text-xs text-gray-600 dark:text-gray-300">
+            {locale === 'en' ? formatDateEnglish(date) : formatDate(date)}
+          </p>
         </div>
-        <div className="absolute right-0 bottom-[-16px]">
+        <div className="absolute left-4 sm:left-[unset] sm:right-0 bottom-[-16px]">
           <button
             className={clsx(
-              archived && '!bg-blue-600',
+              archived && '!bg-sky-700',
               'cursor-pointer mr-3 p-2 bg-blue-400 hover:bg-blue-500 text-white hover:text-white rounded transition'
             )}
             onClick={(event) => handleArchieveEvent(event, id)}

@@ -11,7 +11,7 @@ export default function NoteList({
   const location = useLocation()
   const isArchivedPage = location.pathname === '/notes/archived'
 
-  return notes.length ? (
+  return notes?.length ? (
     <div className="px-4 lg:px-8 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
       {notes.map((note) => (
         <NoteItem
@@ -28,14 +28,14 @@ export default function NoteList({
       ))}
     </div>
   ) : (
-    <div className="p-4 py-8 text-lg bg-gray-100 rounded w-full text-center font-medium">
+    <div className="p-4 py-8 text-lg bg-gray-100 dark:bg-stone-700 dark:text-white rounded w-full text-center font-medium">
       {isArchivedPage ? 'Arsip Kosong' : 'Tidak Ada Catatan'}
     </div>
   )
 }
 
 NoteList.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
+  notes: PropTypes.arrayOf(PropTypes.object) || PropTypes.array,
   handleDeleteNote: PropTypes.func.isRequired,
   handleArchieveNote: PropTypes.func.isRequired,
   handleUnArchieveNote: PropTypes.func.isRequired,

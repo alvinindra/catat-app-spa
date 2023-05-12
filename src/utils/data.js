@@ -121,6 +121,16 @@ function formatDate(date) {
   return new Date(date).toLocaleDateString('id-ID', options)
 }
 
+function formatDateEnglish(date) {
+  const options = {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }
+  return new Date(date).toLocaleDateString('en-EN', options)
+}
+
 export {
   getAllNotes,
   getActiveNotes,
@@ -128,6 +138,7 @@ export {
   deleteNote,
   editNote,
   formatDate,
+  formatDateEnglish,
   getNote,
   archiveNote,
   unarchiveNote,
